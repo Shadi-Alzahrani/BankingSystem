@@ -1,0 +1,9 @@
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem_Business\bin\Debug\BankingSystem_Business.dll
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem_Business\bin\Debug\BankingSystem_Business.pdb
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem_Business\bin\Debug\BankingSystem_DataAccess.dll
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem_Business\bin\Debug\BankingSystem_DataAccess.pdb
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem_Business\obj\Debug\BankingSystem_Business.csproj.AssemblyReference.cache
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem_Business\obj\Debug\BankingSystem_Business.csproj.CoreCompileInputs.cache
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem_Business\obj\Debug\BankingS.4E26A884.Up2Date
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem_Business\obj\Debug\BankingSystem_Business.dll
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem_Business\obj\Debug\BankingSystem_Business.pdb

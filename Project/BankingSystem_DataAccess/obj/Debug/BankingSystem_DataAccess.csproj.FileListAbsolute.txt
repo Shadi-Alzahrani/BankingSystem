@@ -1,0 +1,6 @@
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem_DataAccess\bin\Debug\BankingSystem_DataAccess.dll
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem_DataAccess\bin\Debug\BankingSystem_DataAccess.pdb
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem_DataAccess\obj\Debug\BankingSystem_DataAccess.csproj.AssemblyReference.cache
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem_DataAccess\obj\Debug\BankingSystem_DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem_DataAccess\obj\Debug\BankingSystem_DataAccess.dll
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem_DataAccess\obj\Debug\BankingSystem_DataAccess.pdb
