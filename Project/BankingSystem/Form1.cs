@@ -19,7 +19,15 @@ namespace BankingSystem
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            ClsPerson person = ClsPerson.Find(1000);
+            if (person != null)
+            {
+                MessageBox.Show($"Name is : {person.PersonID}");
+            }
+            else
+            {
+                MessageBox.Show("Failed ");
+            }
         }
     }
 }

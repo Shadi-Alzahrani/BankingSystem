@@ -1,0 +1,15 @@
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\bin\Debug\BankingSystem.exe.config
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\bin\Debug\BankingSystem.exe
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\bin\Debug\BankingSystem.pdb
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\bin\Debug\BankingSystem_Business.dll
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\bin\Debug\BankingSystem_Business.pdb
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.csproj.AssemblyReference.cache
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.Form1.resources
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.Properties.Resources.resources
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.csproj.GenerateResource.cache
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.csproj.CoreCompileInputs.cache
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingS.A12E54A2.Up2Date
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.exe
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.pdb
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\bin\Debug\BankingSystem_DataAccess.dll
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\bin\Debug\BankingSystem_DataAccess.pdb
