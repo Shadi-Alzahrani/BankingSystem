@@ -4,7 +4,6 @@ C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\bin\Debug\BankingSyst
 C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\bin\Debug\BankingSystem_Business.dll
 C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\bin\Debug\BankingSystem_Business.pdb
 C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.csproj.AssemblyReference.cache
-C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.Form1.resources
 C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.Properties.Resources.resources
 C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.csproj.GenerateResource.cache
 C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.csproj.CoreCompileInputs.cache
@@ -13,3 +12,11 @@ C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSyst
 C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.pdb
 C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\bin\Debug\BankingSystem_DataAccess.dll
 C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\bin\Debug\BankingSystem_DataAccess.pdb
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.frmMain.resources
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.DashBoard_Screen.frmDashboard.resources
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.Controls.CtrlAccountInfo.resources
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.Transactions.Deposit_Screen.frmDeposit.resources
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.Transactions.Deposit_Screen.Controls.CtrlSelectAccounts.resources
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.Test.resources
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.Global.Global_Controls.ctrlClientInfoPanel.resources
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.Transactions.WithDraw.frmWithdraw.resources

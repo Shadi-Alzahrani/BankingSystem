@@ -42,8 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClsClientAccountData.cs" />
     <Compile Include="ClsClientData.cs" />
     <Compile Include="ClsConnectionStrings.cs" />
+    <Compile Include="clsCurrencyData.cs" />
     <Compile Include="ClsPersonData.cs" />
     <Compile Include="util\ClsUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

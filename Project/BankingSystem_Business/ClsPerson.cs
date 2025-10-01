@@ -36,7 +36,10 @@ namespace BankingSystem_Business
 
         public int CountryID {  get; set; }
 
-
+        public string FullName
+        {
+            get { return FirstName + " " + LastName; }
+        }
         public ClsPerson()
         {
             this._PersonID = -1;
