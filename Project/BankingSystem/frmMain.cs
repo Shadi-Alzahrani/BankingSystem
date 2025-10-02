@@ -10,7 +10,9 @@ using System.Windows.Forms;
 using BankingSystem.DashBoard_Screen;
 using BankingSystem.Properties;
 using BankingSystem.Transactions.Deposit_Screen;
-using BankingSystem.Transactions.WithDraw;
+using BankingSystem.Transactions.Deposit_Screen;
+using BankingSystem.Transactions.Transfare;
+using BankingSystem_Business;
 
 namespace BankingSystem
 {
@@ -21,7 +23,7 @@ namespace BankingSystem
             InitializeComponent();
         }
 
-        private bool _IsCollapsed;
+        private bool _IsCollapsed=true;
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
@@ -54,10 +56,11 @@ namespace BankingSystem
 
         private void button4_Click(object sender, EventArgs e)
         {
-            frmDeposit frm = new frmDeposit();
+            frmDepositAndWithDraw frm = new frmDepositAndWithDraw(frmDepositAndWithDraw.enTransactionType.Deposit);
             _SelectCurrentScreen(frm);
             this.lblTitle.Text = "Deposit";
             this.pbTitle.Image = Resources.deposit;
+            this.Text = "Deposit";
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -100,15 +103,20 @@ namespace BankingSystem
 
         private void btnWithDraw_Click(object sender, EventArgs e)
         {
-           frmWithdraw frm = new frmWithdraw();
+            frmDepositAndWithDraw frm = new frmDepositAndWithDraw(frmDepositAndWithDraw.enTransactionType.WithDraw);
             _SelectCurrentScreen(frm);
-            this.lblTitle.Text = "Withdraw";
+            this.lblTitle.Text = "WithDraw";
             this.pbTitle.Image = Resources.money_withdrawal;
+            this.Text = "Withdraw";
         }
 
         private void btnTransfare_Click(object sender, EventArgs e)
         {
-
+            frmTransfare frm = new frmTransfare();
+            _SelectCurrentScreen(frm);
+            this.lblTitle.Text = "Transfare";
+             this.pbTitle.Image = Resources.icons8_transaction_32;
+            this.Text = "Transfare";
         }
     }
 }

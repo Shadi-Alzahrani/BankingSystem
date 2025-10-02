@@ -23,7 +23,7 @@ namespace BankingSystem_Business
         public int ClientID { get { return _ClientID; }  }
 
         public DateTime CreatedDate { get; set; }
-        public decimal AccountsTotalBalance { get {return  _GetAccountTotalBalance(); } }
+       
    
       
         private ClsClient(int ClientID, int PersonID, DateTime CreatedDate,
@@ -52,24 +52,20 @@ namespace BankingSystem_Business
        
         }
 
-        private decimal _GetAccountTotalBalance()
+        public async Task< decimal> GetAccountTotalBalance()
         {
-            return ClsClientAccountData.GetClientTotalBalance(this.ClientID);
+            return await  ClsClientAccountData.GetClientTotalBalance(this.ClientID);
         }
-        public static ClsClient findClient(int ClientID)
+        public static async Task<ClsClient> findClient(int ClientID)
         {
-            int PersonID = -1, NationalID = -1, CountryID = -1;
-            DateTime CreatedDate = DateTime.Now, DateOfBirth = DateTime.Now;
-            bool Gender = false;
-            string FirstName = "", LastName = "", PhoneNumber = "", Email = ""
-                , Address = "", image = "";
+           
 
-            bool IsFound = ClsClientData.GetClientInfo(ClientID, ref PersonID, ref CreatedDate);
+            var ClientData = await ClsClientData.GetClientInfo(ClientID);
 
-            if(IsFound)
+            if(ClientData.PersonID!=-1)
             {
-                ClsPerson Person = ClsPerson.Find(PersonID);
-                return new ClsClient(ClientID, PersonID, CreatedDate, Person.NationalID, Person.Gender, Person.DateOFBirth
+                ClsPerson Person = await  ClsPerson.Find(ClientData.PersonID);
+                return new ClsClient(ClientID, ClientData.PersonID, ClientData.CreatedDat, Person.NationalID, Person.Gender, Person.DateOFBirth
                     , Person.FirstName, Person.LastName, Person.PhoneNumber, Person.Email, Person.Address,Person.ImageUrl, Person.CountryID);
             }
 

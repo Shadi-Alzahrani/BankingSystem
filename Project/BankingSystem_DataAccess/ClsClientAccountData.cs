@@ -21,9 +21,9 @@ namespace BankingSystem_DataAccess
 @CloseDate  ,
 @CreatedByUserID 
          */
-        public static bool  GetClientAccountByClientID(int ClientID, int AccountID, ref string AccountName, ref string AccountNumber,
-         ref    decimal Balance, ref int AccountStatusID, ref DateTime CreatedDate,
-         ref  DateTime? CloseDate, ref int CreatedByUserID)
+        public static async Task<( string AccountName,  string AccountNumber,
+          decimal Balance,  int AccountStatusID,  DateTime CreatedDate,
+          DateTime? CloseDate,  int CreatedByUserID)>  GetClientAccountByClientID(int ClientID, int AccountID )
         {
             try
             {
@@ -101,28 +101,30 @@ namespace BankingSystem_DataAccess
                         AccountID = (int)cmd.Parameters["@AccountID"].Value;
 
                        
-                        AccountName = cmd.Parameters["@AccountName"].Value == DBNull.Value 
+                    string    AccountName = cmd.Parameters["@AccountName"].Value == DBNull.Value 
                            ? null
                            : (string)cmd.Parameters["@AccountName"].Value;
 
-                        CloseDate = cmd.Parameters["@CloseDate"].Value == DBNull.Value
+                    DateTime?    CloseDate = cmd.Parameters["@CloseDate"].Value == DBNull.Value
                       ? (DateTime?)null
                       : (DateTime)cmd.Parameters["@CloseDate"].Value;
 
-                        AccountNumber = (string)cmd.Parameters["@AccountNumber"].Value;
-                        Balance = (decimal)cmd.Parameters["@Balance"].Value;
-                        AccountStatusID = (int)cmd.Parameters["@AccountStatusID"].Value;
-                        CreatedDate = (DateTime)cmd.Parameters["@CreatedDate"].Value;
+                      string  AccountNumber = (string)cmd.Parameters["@AccountNumber"].Value;
+                      decimal  Balance = (decimal)cmd.Parameters["@Balance"].Value;
+                      int   AccountStatusID = (int)cmd.Parameters["@AccountStatusID"].Value;
+                      DateTime  CreatedDate = (DateTime)cmd.Parameters["@CreatedDate"].Value;
 
                       
 
 
-                        CreatedByUserID = (int)cmd.Parameters["@CreatedByUserID"].Value;
+                     int    CreatedByUserID = (int)cmd.Parameters["@CreatedByUserID"].Value;
                        
                         
                         conn.Close();
 
-                        return true;
+                        return (AccountName, AccountNumber,
+             Balance, AccountStatusID, CreatedDate,
+            CloseDate, CreatedByUserID);
 
                     }
 
@@ -135,11 +137,13 @@ namespace BankingSystem_DataAccess
 
             }
 
-            return false;
+            return   ("", "",
+             0, -1, DateTime.Now,
+            null, -1); 
 
         }
 
-        public static decimal GetClientTotalBalance(int ClientID )
+        public static async Task< decimal> GetClientTotalBalance(int ClientID )
         {
             decimal TotalBalance=-1;
             try
@@ -148,7 +152,7 @@ namespace BankingSystem_DataAccess
                 {
                     using (SqlCommand cmd = new SqlCommand("sp_GetTotalBalance", conn))
                     {
-                        conn.Open();
+                       await conn.OpenAsync();
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@ClientID", ClientID);
                       
@@ -164,7 +168,7 @@ namespace BankingSystem_DataAccess
 
                         
 
-                        cmd.ExecuteNonQuery();
+                     await    cmd.ExecuteNonQueryAsync();
 
                         TotalBalance = (decimal)cmd.Parameters["@TotalBalance"].Value;
 
@@ -375,7 +379,7 @@ namespace BankingSystem_DataAccess
 
         }
 
-        public static async Task<int > Deposite(int AccountID,decimal Amount , int CurencyID,string Descripation)
+        public static async Task<int > Deposite(int AccountID,decimal Amount , int CurencyID,string Descripation,int TransType)
         {
             int TransactionID = -1;
             try
@@ -390,7 +394,7 @@ namespace BankingSystem_DataAccess
                         cmd.Parameters.AddWithValue("@Amount", Amount);
                         cmd.Parameters.AddWithValue("@CurrencyID",  CurencyID);
                         cmd.Parameters.AddWithValue("@Description", Descripation);
-
+                        cmd.Parameters.AddWithValue("@TransactionType", TransType);
 
                         SqlParameter TransactionIDParm = new SqlParameter("@TransactionID", SqlDbType.Decimal)
                         {
@@ -422,6 +426,119 @@ namespace BankingSystem_DataAccess
             }
 
            return TransactionID;
+
+        }
+
+        public static async Task<int> Transfare(int AccountFromID,int AccountToID, decimal Amount,  string Descripation)
+        {
+            int TransactionID = -1;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ClsConnectionStrings.connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("sp_Transfare", conn))
+                    {
+                        await conn.OpenAsync();
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@AccountFromID", AccountFromID);
+                        cmd.Parameters.AddWithValue("@AccountToID", AccountToID);
+                        cmd.Parameters.AddWithValue("@Amount", Amount);
+                        cmd.Parameters.AddWithValue("@Description", Descripation);
+                       
+
+                        SqlParameter TransactionIDParm = new SqlParameter("@TransactionID", SqlDbType.Decimal)
+                        {
+                            Direction = ParameterDirection.Output,
+                        };
+
+                        TransactionIDParm.Precision = 18;
+                        TransactionIDParm.Scale = 2;
+
+                        cmd.Parameters.Add(TransactionIDParm);
+
+                        await cmd.ExecuteNonQueryAsync();
+
+                        TransactionID = Convert.ToInt32(cmd.Parameters["@TransactionID"].Value);
+
+                        conn.Close();
+
+
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ClsUtility.LogSqlExceptionToWinEventLog(ex);
+
+            }
+
+            return TransactionID;
+
+        }
+        public async static Task<(string FullName,string AccountNumber)> GetAccountForTransfer(int AccountID)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ClsConnectionStrings.connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("sp_GetAccountForTransfer", conn))
+                    {
+                       await conn.OpenAsync();
+
+                        cmd.CommandType = CommandType.StoredProcedure;
+                       
+                        cmd.Parameters.AddWithValue("@AccountID", AccountID);
+
+
+                        SqlParameter AccountNumberParm = new SqlParameter("@AccountNumber", SqlDbType.NVarChar, 20)
+                        {
+                            Direction = ParameterDirection.Output,
+                        };
+
+                        cmd.Parameters.Add(AccountNumberParm);
+
+                        SqlParameter FullNameParm = new SqlParameter("@FullName", SqlDbType.NVarChar, 50)
+                        {
+                            Direction = ParameterDirection.Output,
+                        };
+
+                        cmd.Parameters.Add(FullNameParm);
+
+
+
+
+
+                     await   cmd.ExecuteNonQueryAsync();
+
+                        string FullName = (string)cmd.Parameters["@FullName"].Value;
+                        string AccountNumber = (string)cmd.Parameters["@AccountNumber"].Value;
+
+
+
+
+
+
+
+
+                        conn.Close();
+
+                     return   (FullName, AccountNumber);
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ClsUtility.LogSqlExceptionToWinEventLog(ex);
+
+            }
+
+            return ("","");
 
         }
     }

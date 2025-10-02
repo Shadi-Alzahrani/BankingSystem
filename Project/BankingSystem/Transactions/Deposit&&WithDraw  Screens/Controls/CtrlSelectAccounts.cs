@@ -40,17 +40,26 @@ namespace BankingSystem.Transactions.Deposit_Screen.Controls
         public async void FillClientAccountToComboBox(int ClientID)
         {
             comboBox1.Items.Clear();
-            DataTable dt = await ClsClient.findClient(10000).GetAllAccounts();
+            ClsClient C = await ClsClient.findClient(10000);
 
-            foreach (DataRow dr in dt.Rows)
+            DataTable dt ;
+            if (C!=null)
             {
-                comboBox1.Items.Add(new Account
+                 dt = await C.GetAllAccounts();
+
+
+                foreach (DataRow dr in dt.Rows)
                 {
-                    AccountID = Convert.ToInt32(dr["AccountID"]),
-                    AccountName = dr["AccountName"].ToString().Trim(),
-                    Balance = Convert.ToDecimal(dr["Balance"])
-                });
+                    comboBox1.Items.Add(new Account
+                    {
+                        AccountID = Convert.ToInt32(dr["AccountID"]),
+                        AccountName = dr["AccountName"].ToString().Trim(),
+                        Balance = Convert.ToDecimal(dr["Balance"])
+                    });
+                }
             }
+            
+
             comboBox1.SelectedIndex = 0;
         }
 

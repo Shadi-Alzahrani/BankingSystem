@@ -8,14 +8,15 @@ using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
+using System.Net;
 namespace BankingSystem_DataAccess
 {
     public  class ClsPersonData
     {
      
-        public static  bool GetPersonInfoByPersonID( int PersonID, ref int NationalID,ref bool Gender,
-           ref DateTime DateOFBirth ,ref string FirstName,ref string LastName,ref string PhoneNumber,
-           ref string Email,ref string Address,ref  string  ImageUrl,ref int CountryID)
+        public async static Task< (int NationalID,  bool Gender,
+            DateTime DateOFBirth,  string FirstName,  string LastName,  string PhoneNumber,
+            string Email,  string Address,  string  ImageUrl,  int CountryID)>    GetPersonInfoByPersonID( int PersonID)
         {
             try
             {
@@ -23,7 +24,7 @@ namespace BankingSystem_DataAccess
                 {
                     using (SqlCommand cmd = new SqlCommand("Sp_GetPersonInfo", conn))
                     {
-                        conn.Open();
+                       await    conn.OpenAsync();
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@PersonID", PersonID);
                         SqlParameter NationalIDParm = new SqlParameter("@NationalID", SqlDbType.Int)
@@ -109,19 +110,20 @@ namespace BankingSystem_DataAccess
 
 
                         
-                        cmd.ExecuteReader();
+                     await   cmd.ExecuteNonQueryAsync();
                        
-
-                        NationalID = (int)cmd.Parameters["@PersonID"].Value;
-                        Gender = (bool)cmd.Parameters["@Gender"].Value;
-                        DateOFBirth = (DateTime)cmd.Parameters["@DateOFBirth"].Value;
-                        FirstName = (string)cmd.Parameters["@FirstName"].Value;
-                        LastName = (string)cmd.Parameters["@LastName"].Value;
-                        PhoneNumber = (string)cmd.Parameters["@PhoneNumber"].Value;
-                        Email = (string)cmd.Parameters["@Email"].Value;
-                        Address = (string)cmd.Parameters["@Address"].Value;  
-                        if(cmd.Parameters["@image"].Value!=DBNull.Value)
-                        ImageUrl = (string)cmd.Parameters["@image"].Value;
+                    int CountryID = (int)cmd.Parameters["@countryID"].Value;
+                    int     NationalID = (int)cmd.Parameters["@NationalID"].Value;
+                    bool     Gender = (bool)cmd.Parameters["@Gender"].Value;
+                      DateTime  DateOFBirth = (DateTime)cmd.Parameters["@DateOFBirth"].Value;
+                  string      FirstName = (string)cmd.Parameters["@FirstName"].Value;
+                   string     LastName = (string)cmd.Parameters["@LastName"].Value;
+                    string    PhoneNumber = (string)cmd.Parameters["@PhoneNumber"].Value;
+                     string   Email = (string)cmd.Parameters["@Email"].Value;
+                      string  Address = (string)cmd.Parameters["@Address"].Value;
+                        string ImageUrl;
+                        if (cmd.Parameters["@image"].Value!=DBNull.Value)
+                            ImageUrl = (string)cmd.Parameters["@image"].Value;
                         else
                         {
                             ImageUrl=null;
@@ -129,7 +131,9 @@ namespace BankingSystem_DataAccess
 
                       conn.Close();
 
-                        return true;
+                return        ( NationalID,  Gender,
+             DateOFBirth,  FirstName,  LastName,  PhoneNumber,
+             Email,  Address,  ImageUrl,  CountryID);
 
                     }
 
@@ -142,8 +146,11 @@ namespace BankingSystem_DataAccess
 
             }
 
-            return false;
+            return (-1, false,
+              DateTime.Now, "", "", "",
+              "", "", "",-1);
 
         }
     }
-}
+    }
+

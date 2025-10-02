@@ -79,19 +79,15 @@ namespace BankingSystem_Business
 
 
 
-        public  static  ClsPerson Find(int PersonID)
+        public   static async Task <ClsPerson> Find(int PersonID)
         {
-            int NationalID = -1 , CountryID=-1;
-            bool Gendor = true;
-            DateTime DateOfBirth = DateTime.Now;
-            string FirstName = "",LastName = "", PhoneNumber = "", Email = "", Address = "", imageUrl="";
+           
 
-            bool IsFound = ClsPersonData.GetPersonInfoByPersonID(PersonID,ref NationalID,ref Gendor,ref DateOfBirth,
-                ref FirstName,ref LastName, ref PhoneNumber, ref Email,ref Address, ref imageUrl,ref CountryID);
+            var P = await ClsPersonData.GetPersonInfoByPersonID(PersonID);
 
-            if (IsFound)
-                return new ClsPerson(PersonID,NationalID,Gendor,DateOfBirth,FirstName,
-                    LastName,PhoneNumber,Email,Address,imageUrl,CountryID);
+            if (P.NationalID!=-1)
+                return new ClsPerson(PersonID,P.NationalID, P.Gender,P.DateOFBirth,P.FirstName,
+                    P.LastName, P.PhoneNumber,P.Email,P.Address,P.ImageUrl,P.CountryID);
 
             else
                 return null;

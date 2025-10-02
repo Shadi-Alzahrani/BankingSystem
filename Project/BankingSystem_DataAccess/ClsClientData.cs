@@ -10,13 +10,14 @@ namespace BankingSystem_DataAccess
 {
     public  class ClsClientData
     {
-        public static bool  GetClientInfo(int ClientID, ref int PersonID, ref DateTime CreatedDate )
+        public async static Task<( int PersonID, DateTime CreatedDat)>  GetClientInfo(int ClientID)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(ClsConnectionStrings.connectionString))
                 {
-                    conn.Open();
+                   await  conn.OpenAsync();
+
                     using (SqlCommand cmd = new SqlCommand("Sp_GetClientInfo", conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
@@ -38,12 +39,12 @@ namespace BankingSystem_DataAccess
 
                         cmd.Parameters.Add(CreatedDateParm);
 
-                        cmd.ExecuteReader();
+                      await  cmd.ExecuteNonQueryAsync();
 
-                        PersonID = (int)cmd.Parameters["@PersonID"].Value;
-                        CreatedDate = (DateTime)cmd.Parameters["@CreatedDate"].Value;
+                      int   PersonID = (int)cmd.Parameters["@PersonID"].Value;
+                       DateTime CreatedDate = (DateTime)cmd.Parameters["@CreatedDate"].Value;
 
-                        return true;
+                        return (PersonID,CreatedDate);
 
                     }
                 }
@@ -52,8 +53,8 @@ namespace BankingSystem_DataAccess
             {
                 ClsUtility.LogSqlExceptionToWinEventLog(ex);
             }
-          
-            return false;
+
+            return(-1,DateTime.Now);
         }
     }
 }

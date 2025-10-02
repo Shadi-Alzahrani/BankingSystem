@@ -79,23 +79,29 @@
     <Compile Include="Test.Designer.cs">
       <DependentUpon>Test.cs</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Deposit Screen\Controls\CtrlSelectAccounts.cs">
+    <Compile Include="Transactions\Deposit&amp;&amp;WithDraw  Screens\Controls\CtrlSelectAccounts.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Transactions\Deposit Screen\Controls\CtrlSelectAccounts.Designer.cs">
+    <Compile Include="Transactions\Deposit&amp;&amp;WithDraw  Screens\Controls\CtrlSelectAccounts.Designer.cs">
       <DependentUpon>CtrlSelectAccounts.cs</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Deposit Screen\frmDeposit.cs">
+    <Compile Include="Transactions\Deposit&amp;&amp;WithDraw  Screens\frmDepositAndWithDraw.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Deposit Screen\frmDeposit.Designer.cs">
-      <DependentUpon>frmDeposit.cs</DependentUpon>
+    <Compile Include="Transactions\Deposit&amp;&amp;WithDraw  Screens\frmDepositAndWithDraw.Designer.cs">
+      <DependentUpon>frmDepositAndWithDraw.cs</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\WithDraw\frmWithdraw.cs">
+    <Compile Include="Transactions\Transfare\Control\ctrlSelectAccountToTranfare.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Transactions\Transfare\Control\ctrlSelectAccountToTranfare.Designer.cs">
+      <DependentUpon>ctrlSelectAccountToTranfare.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Transfare\frmTransfare.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\WithDraw\frmWithdraw.Designer.cs">
-      <DependentUpon>frmWithdraw.cs</DependentUpon>
+    <Compile Include="Transactions\Transfare\frmTransfare.Designer.cs">
+      <DependentUpon>frmTransfare.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="DashBoard Screen\Controls\CtrlAccountInfo.resx">
       <DependentUpon>CtrlAccountInfo.cs</DependentUpon>
@@ -122,14 +128,17 @@
     <EmbeddedResource Include="Test.resx">
       <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Deposit Screen\Controls\CtrlSelectAccounts.resx">
+    <EmbeddedResource Include="Transactions\Deposit&amp;&amp;WithDraw  Screens\Controls\CtrlSelectAccounts.resx">
       <DependentUpon>CtrlSelectAccounts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Deposit Screen\frmDeposit.resx">
-      <DependentUpon>frmDeposit.cs</DependentUpon>
+    <EmbeddedResource Include="Transactions\Deposit&amp;&amp;WithDraw  Screens\frmDepositAndWithDraw.resx">
+      <DependentUpon>frmDepositAndWithDraw.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\WithDraw\frmWithdraw.resx">
-      <DependentUpon>frmWithdraw.cs</DependentUpon>
+    <EmbeddedResource Include="Transactions\Transfare\Control\ctrlSelectAccountToTranfare.resx">
+      <DependentUpon>ctrlSelectAccountToTranfare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Transfare\frmTransfare.resx">
+      <DependentUpon>frmTransfare.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -170,6 +179,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\money-withdrawal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-transaction-32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

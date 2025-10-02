@@ -21,8 +21,10 @@ namespace BankingSystem_Business
  */
     public class ClsClientAccount
     {
-        enum enMode {AddNew=0,Update=1 }
+         enum enMode {AddNew=0,Update=1 }
         private enMode _Mode;
+
+        public enum enTransactionType { Deposit = 1, WithDraw = 2 }
         public int ClientID { get; set; }
         public int AccountID { get; set; }
         public string AccountName {  get; set; }    
@@ -33,6 +35,7 @@ namespace BankingSystem_Business
         public DateTime? CloseDate {  get; set; }
         public int CreatedByUserID {  get; set; }   
         public ClsClient ClientInfo { get; set; }
+     
         public ClsClientAccount()
         {
             this.ClientID = -1;
@@ -45,9 +48,10 @@ namespace BankingSystem_Business
             this.CloseDate = DateTime.Now;
             this.CreatedByUserID = -1;
             _Mode = enMode.AddNew;
+           
         }
 
-        private ClsClientAccount(int ClientID,int AccountID,string AccountName,string AccountNumber,
+        private  ClsClientAccount(int ClientID,int AccountID,string AccountName,string AccountNumber,
             decimal Balance,int AccountStatusID,DateTime CreatedDate,DateTime? CloseDate,
             int CreatedByUserID)
         {
@@ -61,50 +65,39 @@ namespace BankingSystem_Business
             this.CloseDate= CloseDate;
             this.CreatedByUserID= CreatedByUserID;
 
-            this.ClientInfo = ClsClient.findClient(this.ClientID);
+            
             this._Mode = enMode.Update;
         }
 
-
-        public static  ClsClientAccount FindClientAccount(int ClientID,int AccountID)
+        public static  async Task<ClsClientAccount> FindClientAccount(int ClientID,int AccountID)
         {
-            int AccountStatusID = -1,CreatedByUserID=-1;
-            string AccountNumber = "",AccountName="";
-            decimal Balance = 0;
-            DateTime CreatedDate = DateTime.Now;
-           DateTime? CloseDate=DateTime.Now ;
 
-            bool IsFound = ClsClientAccountData.GetClientAccountByClientID(ClientID, AccountID,
-               ref  AccountName, ref AccountNumber, ref Balance, ref AccountStatusID,
-               ref CreatedDate,   ref CloseDate, ref CreatedByUserID);
 
-            string name  = AccountNumber;
-            int accountid= AccountID;
-            DateTime t  = CreatedDate;
+            var Acc = await ClsClientAccountData.GetClientAccountByClientID(ClientID, AccountID);
 
-            if (IsFound)
-                return new ClsClientAccount(ClientID,AccountID,AccountName,AccountNumber,
-                    Balance,AccountStatusID,CreatedDate,CloseDate,CreatedByUserID);
+           
+
+            if (Acc.AccountName!="")
+                return new ClsClientAccount(ClientID,AccountID, Acc.AccountName, Acc.AccountNumber,
+                   Acc.Balance, Acc.AccountStatusID, Acc.CreatedDate, Acc.CloseDate, Acc.CreatedByUserID);
             else
                 return null;
 
             
         }
 
+      
 
-        public async Task< int> Deposite( decimal Amount,int CurrencyID,string Description)
+        public async Task< int> Deposite( decimal Amount,int CurrencyID,string Description, int TransType)
         {
            
             try
             {
-                ClsClientAccount Acc = ClsClientAccount.FindClientAccount(this.ClientID, AccountID);
+                ClsClientAccount Acc = await ClsClientAccount.FindClientAccount(this.ClientID, AccountID);
 
-                if (Acc == null || Amount <= 0)
-                {
-                    return -1;
-                }
+               
 
-               int TransID = await ClsClientAccountData.Deposite(this.AccountID, Amount, CurrencyID, Description);
+               int TransID = await ClsClientAccountData.Deposite(this.AccountID, Amount, CurrencyID, Description, TransType);
 
                 return TransID;       
 
@@ -120,6 +113,37 @@ namespace BankingSystem_Business
 
 
         }
+
+        public async Task<int> Transfare(int AccountToID,decimal Amount, string Description)
+        {
+
+            try
+            {
+                ClsClientAccount Acc = await ClsClientAccount.FindClientAccount(this.ClientID, AccountID);
+
+
+
+                int TransID = await ClsClientAccountData.Transfare(this.AccountID,AccountToID, Amount, Description);
+
+                return TransID;
+
+            }
+            catch (Exception ex)
+            {
+                clsUtils.LogSqlExceptionToWinEventLog(ex);
+            }
+
+            return -1;
+
+
+
+
+        }
+        public static  async Task<(string FullName, string AccountNumber)> GetAccountForTransfer(int AccountID)
+        {
+            return await ClsClientAccountData.GetAccountForTransfer(AccountID);
+        }
+
 
     }
 }

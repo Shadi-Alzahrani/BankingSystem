@@ -24,7 +24,7 @@ namespace BankingSystem.DashBoard_Screen
 
         private async void frmDashboard_Load(object sender, EventArgs e)
         {
-            clsGlobal.GlobalClient = ClsClient.findClient(10000);
+            clsGlobal.GlobalClient =  await ClsClient.findClient(10000);
 
 
             Task task = LoadData(clsGlobal.GlobalClient);
@@ -64,7 +64,9 @@ namespace BankingSystem.DashBoard_Screen
             lblTotalDeposit.Text = (await Client.GetTotalAmountPerTransAction(ClsClient.enTransactionType.Deposit)).ToString() + " SR";
             lblTotalWithDraw.Text = (await Client.GetTotalAmountPerTransAction(ClsClient.enTransactionType.Withdrawal)).ToString() + " SR";
             lblTotalTransfares.Text = (await Client.GetTotalAmountPerTransAction(ClsClient.enTransactionType.Transfer)).ToString() + " SR";
-            lblTotalBalances.Text = Client.AccountsTotalBalance.ToString();
+
+            decimal TotalBalance = await Client.GetAccountTotalBalance();
+            lblTotalBalances.Text = TotalBalance.ToString();
             if (File.Exists(Client.ImageUrl))
             {
                 pbClientPic.ImageLocation = Client.ImageUrl;
