@@ -13,7 +13,7 @@ namespace BankingSystem_Business
    ,p.Email,p.Address,p.image,p.CountryID */
 
       public   enum enMode {AddNew=0,Update=1 }
-      private enMode _Mode = enMode.AddNew;
+      private enMode Mode = enMode.AddNew;
 
         protected int _PersonID;
         public int PersonID { get { return _PersonID; } }  
@@ -54,7 +54,7 @@ namespace BankingSystem_Business
             this.ImageUrl = "";
             this.CountryID = -1;
 
-            this._Mode = enMode.AddNew;
+            this.Mode = enMode.AddNew;
         }
 
         private ClsPerson(int PersonID,int NationalID,bool Gender,DateTime DateOfBirth,
@@ -73,7 +73,7 @@ namespace BankingSystem_Business
             this.ImageUrl = imageUrl;
             this.CountryID = CountryID;
 
-            this._Mode = enMode.Update;
+            this.Mode = enMode.Update;
 
         }
 

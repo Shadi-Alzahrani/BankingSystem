@@ -12,10 +12,18 @@ using BankingSystem.Controls;
 using BankingSystem.Global;
 using BankingSystem_Business;
 using System.Threading.Tasks;
+using System.Drawing.Printing;
+using System.Runtime.InteropServices;
 namespace BankingSystem.DashBoard_Screen
 {
     public partial class frmDashboard : Form
     {
+        int CurrentPage = 1;
+        int totalRecords = 0;
+        int totalPages = 0;
+
+
+
         private DataTable DtAllAccountsTransActions;
         public frmDashboard()
         {
@@ -24,66 +32,51 @@ namespace BankingSystem.DashBoard_Screen
 
         private async void frmDashboard_Load(object sender, EventArgs e)
         {
-            clsGlobal.GlobalClient =  await ClsClient.findClient(10000);
-
-
-            Task task = LoadData(clsGlobal.GlobalClient);
-
-            DtAllAccountsTransActions = await clsGlobal.GlobalClient.GetAllAccountsTransActions();
-
-            dgvAllClientsTransActions.DataSource = DtAllAccountsTransActions;
-
-            if(dgvAllClientsTransActions.RowCount>0)
+            if(!clsGlobal._GlobalUser.IsAdmin)
             {
-                dgvAllClientsTransActions.Columns[0].HeaderText = "T.DateTime ";
-                dgvAllClientsTransActions.Columns[0].Width = 200;
-              
-                dgvAllClientsTransActions.Columns[1].HeaderText = "T.Type ";
-                dgvAllClientsTransActions.Columns[1].Width = 100;
+                await LoadData(clsGlobal.GlobalClient);
 
-                dgvAllClientsTransActions.Columns[2].HeaderText = "T.Description ";
-                dgvAllClientsTransActions.Columns[2].Width = 150;
-
-                dgvAllClientsTransActions.Columns[3].HeaderText = "T.Amount ";
-                dgvAllClientsTransActions.Columns[3].Width = 100;
-
-                dgvAllClientsTransActions.Columns[4].HeaderText = "T.Status ";
-                dgvAllClientsTransActions.Columns[4].Width = 100;
-
+                LoadTransactionGrid(CurrentPage);
             }
            
+           
         }
+        
 
-        public async Task  LoadData(ClsClient Client)
+        public async Task LoadData(ClsClient Client)
         {
             lblClientID.Text = Client.ClientID.ToString();
             lblCurrentDate.Text = DateTime.Now.ToString();
             lblClientName.Text = Client.FullName;
-            
-            lblNumberOfAccounts.Text= (await Client._GetNumberOFAccounts()).ToString();
+
+            lblNumberOfAccounts.Text = (await Client._GetNumberOFAccounts()).ToString();
             lblTotalDeposit.Text = (await Client.GetTotalAmountPerTransAction(ClsClient.enTransactionType.Deposit)).ToString() + " SR";
             lblTotalWithDraw.Text = (await Client.GetTotalAmountPerTransAction(ClsClient.enTransactionType.Withdrawal)).ToString() + " SR";
             lblTotalTransfares.Text = (await Client.GetTotalAmountPerTransAction(ClsClient.enTransactionType.Transfer)).ToString() + " SR";
-
+            lblCurrentPage.Text = CurrentPage.ToString();
             decimal TotalBalance = await Client.GetAccountTotalBalance();
             lblTotalBalances.Text = TotalBalance.ToString();
+            _EnableDisableNextPrevBtn();
+
+
+
             if (File.Exists(Client.ImageUrl))
             {
                 pbClientPic.ImageLocation = Client.ImageUrl;
             }
-               
-            
-        
 
-           await  _FillClientAccountInfoIntoAccountsPanel();
+
+
+
+            await _FillClientAccountInfoIntoAccountsPanel();
 
         }
 
-        private async Task _FillClientAccountInfoIntoAccountsPanel ()
+        private async Task _FillClientAccountInfoIntoAccountsPanel()
         {
             DataTable dtAccounts = new DataTable();
             dtAccounts = await clsGlobal.GlobalClient.GetAllAccounts();
-            
+
             foreach (DataRow account in dtAccounts.Rows)
             {
                 CtrlAccountInfo accountInfo = new CtrlAccountInfo();
@@ -93,6 +86,83 @@ namespace BankingSystem.DashBoard_Screen
                 accountInfo.SetValues(accountInfo.AccountName, accountInfo.AccountBalance, accountInfo.AccountID);
                 flpAccounts.Controls.Add(accountInfo);
             }
+        }
+
+        private async void LoadTransactionGrid(int pageNumber)
+        {
+
+            totalRecords = await clsGlobal.GlobalClient.GetTotalTransactions();
+            totalPages = (int)Math.Ceiling(totalRecords / (double)4);
+            lblToPages.Text = totalPages.ToString();
+            DtAllAccountsTransActions = await clsGlobal.GlobalClient.GetAllAccountsTransActions(CurrentPage);
+
+            dataGridView1.DataSource = DtAllAccountsTransActions;
+
+            if (dataGridView1.RowCount > 0)
+            {
+                dataGridView1.Columns[0].HeaderText = "T.Type ";
+                dataGridView1.Columns[0].Width = 100;
+
+                dataGridView1.Columns[1].HeaderText = "Amount";
+                dataGridView1.Columns[1].Width = 100;
+
+                dataGridView1.Columns[2].HeaderText = "T.Description ";
+                dataGridView1.Columns[2].Width = 150;
+
+                dataGridView1.Columns[3].HeaderText = "T.Status";
+
+                dataGridView1.Columns[4].HeaderText = "T.Date ";
+                dataGridView1.Columns[4].Width = 150;
+            }
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            
+                CurrentPage++;
+            lblCurrentPage.Text = CurrentPage.ToString();
+            LoadTransactionGrid(CurrentPage);
+        }
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+           
+
+             CurrentPage--;
+            lblCurrentPage.Text = CurrentPage.ToString();
+            LoadTransactionGrid(CurrentPage);
+        }
+
+
+        private void _EnableDisableNextPrevBtn()
+        {
+            if (CurrentPage == 1)
+            {
+                btnPrev.Enabled = false;
+            }
+            else
+            {
+                btnPrev.Enabled = true;
+            }
+
+            if(CurrentPage==totalPages)
+            {
+                btnNext.Enabled=false;
+            }
+            else
+            {
+                btnNext.Enabled=true;
+            }
+
+        }
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCurrentPage_TextChanged(object sender, EventArgs e)
+        {
+            _EnableDisableNextPrevBtn();
         }
     }
 }

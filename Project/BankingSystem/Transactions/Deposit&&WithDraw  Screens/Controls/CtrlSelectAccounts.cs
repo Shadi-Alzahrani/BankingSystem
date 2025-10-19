@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BankingSystem.Global;
 using BankingSystem_Business;
 
 namespace BankingSystem.Transactions.Deposit_Screen.Controls
@@ -40,7 +41,7 @@ namespace BankingSystem.Transactions.Deposit_Screen.Controls
         public async void FillClientAccountToComboBox(int ClientID)
         {
             comboBox1.Items.Clear();
-            ClsClient C = await ClsClient.findClient(10000);
+            ClsClient C = await ClsClient.findClient(clsGlobal.GlobalClient.ClientID);
 
             DataTable dt ;
             if (C!=null)

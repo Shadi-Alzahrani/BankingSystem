@@ -30,8 +30,12 @@ namespace BankingSystem.Transactions.Transfare
         {
             int ClientID = clsGlobal.GlobalClient.ClientID;
             ctrlClientInfoPanel1.LoadData(ClientID);
+            if(cbCurency.Items.Count==0)
+            {
+                _FillCurrencyComboBox();
+            }
             ctrlSelectAccounts1.FillClientAccountToComboBox(ClientID);
-            _FillCurrencyComboBox();
+           
         }
 
         private void txtAmount_TextChanged(object sender, EventArgs e)
@@ -130,7 +134,9 @@ namespace BankingSystem.Transactions.Transfare
               "Success",
               MessageBoxButtons.OK,
               MessageBoxIcon.Information);
-               
+                frmTransfare_Load(null, null);
+
+
             }
             else
             {

@@ -10,5 +10,6 @@ namespace BankingSystem.Global
     public  class clsGlobal
     {
         public static ClsClient GlobalClient;
+        public static clsUser _GlobalUser;
     }
 }

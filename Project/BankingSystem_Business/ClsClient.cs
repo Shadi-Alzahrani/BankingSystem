@@ -73,7 +73,25 @@ namespace BankingSystem_Business
                 return null;
 
         }
-    
+
+        public static async Task<ClsClient> findClientBYPersonID(int PersonID)
+        {
+
+
+            var ClientData = await ClsClientData.GetClientInfoByPersonID(PersonID);
+
+            if (ClientData.ClientID != -1)
+            {
+                ClsPerson Person = await ClsPerson.Find(PersonID);
+                return new ClsClient(ClientData.ClientID, PersonID , ClientData.CreatedDat, Person.NationalID, Person.Gender, Person.DateOFBirth
+                    , Person.FirstName, Person.LastName, Person.PhoneNumber, Person.Email, Person.Address, Person.ImageUrl, Person.CountryID);
+            }
+
+            else
+                return null;
+
+        }
+
 
         public  async Task<int > _GetNumberOFAccounts()
         {
@@ -86,18 +104,61 @@ namespace BankingSystem_Business
             return await ClsClientAccountData.GetAllClientAccounts(this.ClientID);
         }
 
-
+        public static  async Task<DataTable> GetFullAccountsInfo()
+        {
+            return await ClsClientAccountData.GetAllClientsAccounts();
+        }
         public  async Task<decimal>GetTotalAmountPerTransAction(enTransactionType TransActionType)
         {
             decimal TotalAmount = await ClsClientAccountData.GetTotalAmountPerTransaction(this.ClientID,(int)TransActionType);
             return TotalAmount;
         }
 
-        public async Task<DataTable> GetAllAccountsTransActions()
+        public async Task<DataTable> GetAllAccountsTransActions(int PageNumber)
         {
-            return await ClsClientAccountData.GetAllAccountsTransActions(this.ClientID);
+            return await ClsClientAccountData.GetAllAccountsTransActions(this.ClientID,PageNumber);
         }
 
+        public async Task<int > GetTotalTransactions()
+        {
+            int TotalTrans = await ClsClientAccountData.GetTotalClientTransactions(this.ClientID);
+
+            return TotalTrans;
+        }
+
+        public async Task<DataTable> GetClientTrans(enTransactionType TransType,DateTime From,DateTime To)
+        {
+            return await ClsClientData.GetClientTransaction(this.ClientID, (int)TransType,From,To);
+        }
+
+
+        private async Task<bool>_UpdateClientInfo()
+        {
+      return   await      ClsClientData.UpdateClientInfo(this.PersonID,this.FirstName,this.LastName
+                ,this.Email,this.PhoneNumber,this.Address,this.ImageUrl);
+        }
+
+        public async static Task<int > GetNumberOfClients()
+        {
+            return await ClsClientData.GetTotalNumberOfClients();
+        }
+        public async Task<bool> Save()
+        {
+            switch(_Mode)
+            {
+                case enMode.Update:
+                    if( await _UpdateClientInfo())
+                    {
+                      return true;
+                    }
+                    else
+                        return false;  
+                    break;
+
+                default:
+                    return false;
+            }
+        }
     }
 
 

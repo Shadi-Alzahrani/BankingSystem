@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BankingSystem.DashBoard_Screen;
+using BankingSystem.DashBoard_Screen.Admin_Dashboard;
+using BankingSystem.Log_In_Screen;
+using BankingSystem.Manage_Users;
 
 namespace BankingSystem
 {
@@ -17,7 +20,7 @@ namespace BankingSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+            Application.Run(new frmLogIn());
         }
     }
 }

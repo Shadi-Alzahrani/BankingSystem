@@ -28,22 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlSelectAccountToTranfare1 = new BankingSystem.Transactions.Transfare.Control.ctrlSelectAccountToTranfare();
             this.SuspendLayout();
-            // 
-            // ctrlSelectAccountToTranfare1
-            // 
-            this.ctrlSelectAccountToTranfare1.Location = new System.Drawing.Point(110, 111);
-            this.ctrlSelectAccountToTranfare1.Name = "ctrlSelectAccountToTranfare1";
-            this.ctrlSelectAccountToTranfare1.Size = new System.Drawing.Size(577, 268);
-            this.ctrlSelectAccountToTranfare1.TabIndex = 0;
             // 
             // Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.ctrlSelectAccountToTranfare1);
+            this.ClientSize = new System.Drawing.Size(1192, 450);
             this.Name = "Test";
             this.Text = "Test";
             this.Load += new System.EventHandler(this.Test_Load);
@@ -52,7 +43,5 @@
         }
 
         #endregion
-
-        private Transactions.Transfare.Control.ctrlSelectAccountToTranfare ctrlSelectAccountToTranfare1;
     }
 }

@@ -123,7 +123,12 @@ namespace BankingSystem_DataAccess
                       string  Address = (string)cmd.Parameters["@Address"].Value;
                         string ImageUrl;
                         if (cmd.Parameters["@image"].Value!=DBNull.Value)
-                            ImageUrl = (string)cmd.Parameters["@image"].Value;
+                        {
+                            string pathFromDb = (string)cmd.Parameters["@image"].Value; ;
+                            string fixedPath = pathFromDb.Replace(@"\\", @"\");
+                            ImageUrl = fixedPath;
+                        }
+                          
                         else
                         {
                             ImageUrl=null;

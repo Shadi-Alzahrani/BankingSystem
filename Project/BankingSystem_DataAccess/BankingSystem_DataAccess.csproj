@@ -47,6 +47,7 @@
     <Compile Include="ClsConnectionStrings.cs" />
     <Compile Include="clsCurrencyData.cs" />
     <Compile Include="ClsPersonData.cs" />
+    <Compile Include="clsUserData.cs" />
     <Compile Include="util\ClsUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

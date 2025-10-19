@@ -23,8 +23,8 @@ namespace BankingSystem_Business
     {
          enum enMode {AddNew=0,Update=1 }
         private enMode _Mode;
-
-        public enum enTransactionType { Deposit = 1, WithDraw = 2 }
+       public  enum enAccountsStatus { Active = 1, anActive = 2, Suspended = 3, Closed = 4 };
+        public enum enTransactionType { Deposit = 1, WithDraw = 2,Transfare=3 }
         public int ClientID { get; set; }
         public int AccountID { get; set; }
         public string AccountName {  get; set; }    
@@ -86,7 +86,22 @@ namespace BankingSystem_Business
             
         }
 
-      
+        public static async Task<ClsClientAccount> FindClientAccount( int AccountID)
+        {
+
+
+            var Acc = await ClsClientAccountData.GetClientAccountByAccountID( AccountID);
+
+
+
+            if (Acc.ClientID != -1)
+                return new ClsClientAccount(Acc.ClientID, AccountID, Acc.AccountName, Acc.AccountNumber,
+                   Acc.Balance, Acc.AccountStatusID, Acc.CreatedDate, Acc.CloseDate, Acc.CreatedByUserID);
+            else
+                return null;
+
+
+        }
 
         public async Task< int> Deposite( decimal Amount,int CurrencyID,string Description, int TransType)
         {
@@ -144,6 +159,29 @@ namespace BankingSystem_Business
             return await ClsClientAccountData.GetAccountForTransfer(AccountID);
         }
 
+        public async static Task<int> GetNumberOfAccounts()
+        {
+            return await ClsClientAccountData.GetTotalNumberOfAccounts();
+        }
 
+        public async static Task<int> GetNumberOfTransactions()
+        {
+            return await ClsClientAccountData.GetTotalNumberOfTransactions();
+        }
+
+        public async static Task<decimal> GetTotalBalnces()
+        {
+            return await ClsClientAccountData.GetTotalBalnces();
+        }
+
+        public async static Task<decimal> GetclientsTotalTransaction(enTransactionType TransactionType)
+        {
+            return await ClsClientAccountData.GetClientsTotalTransaction((int)TransactionType);
+        }
+
+        public  static async  Task<bool> UpdateAccountStatus(int AccountID, enAccountsStatus AccountStatus,string CloseReason)
+        {
+            return await ClsClientAccountData.UpdateAccountStatus(AccountID,(int)AccountStatus, CloseReason);
+        }
     }
 }

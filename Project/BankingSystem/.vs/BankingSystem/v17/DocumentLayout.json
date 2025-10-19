@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\shadi\\Desktop\\BankingSystem\\Project\\BankingSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{48E0CFAE-FC03-4B79-ACAF-742560640805}|BankingSystem.csproj|c:\\users\\shadi\\desktop\\bankingsystem\\project\\bankingsystem\\transactions\\deposit\u0026\u0026withdraw  screens\\frmdepositandwithdraw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{48E0CFAE-FC03-4B79-ACAF-742560640805}|BankingSystem.csproj|solutionrelative:transactions\\deposit\u0026\u0026withdraw  screens\\frmdepositandwithdraw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{48E0CFAE-FC03-4B79-ACAF-742560640805}|BankingSystem.csproj|c:\\users\\shadi\\desktop\\bankingsystem\\project\\bankingsystem\\manage clients accounts\\frmclientaccountslist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{48E0CFAE-FC03-4B79-ACAF-742560640805}|BankingSystem.csproj|solutionrelative:manage clients accounts\\frmclientaccountslist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{48E0CFAE-FC03-4B79-ACAF-742560640805}|BankingSystem.csproj|c:\\users\\shadi\\desktop\\bankingsystem\\project\\bankingsystem\\transactions\\deposit\u0026\u0026withdraw  screens\\frmdepositandwithdraw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{48E0CFAE-FC03-4B79-ACAF-742560640805}|BankingSystem.csproj|solutionrelative:transactions\\deposit\u0026\u0026withdraw  screens\\frmdepositandwithdraw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{48E0CFAE-FC03-4B79-ACAF-742560640805}|BankingSystem.csproj|c:\\users\\shadi\\desktop\\bankingsystem\\project\\bankingsystem\\manage users\\frmmanageusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{48E0CFAE-FC03-4B79-ACAF-742560640805}|BankingSystem.csproj|solutionrelative:manage users\\frmmanageusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,27 +38,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "frmDepositAndWithDraw.cs",
-              "DocumentMoniker": "C:\\Users\\shadi\\Desktop\\BankingSystem\\Project\\BankingSystem\\Transactions\\Deposit\u0026\u0026WithDraw  Screens\\frmDepositAndWithDraw.cs",
-              "RelativeDocumentMoniker": "Transactions\\Deposit\u0026\u0026WithDraw  Screens\\frmDepositAndWithDraw.cs",
-              "ToolTip": "C:\\Users\\shadi\\Desktop\\BankingSystem\\Project\\BankingSystem\\Transactions\\Deposit\u0026\u0026WithDraw  Screens\\frmDepositAndWithDraw.cs",
-              "RelativeToolTip": "Transactions\\Deposit\u0026\u0026WithDraw  Screens\\frmDepositAndWithDraw.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAiwB8AAAALAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "frmManageUsers.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\shadi\\Desktop\\BankingSystem\\Project\\BankingSystem\\Manage Users\\frmManageUsers.cs",
+              "RelativeDocumentMoniker": "Manage Users\\frmManageUsers.cs",
+              "ToolTip": "C:\\Users\\shadi\\Desktop\\BankingSystem\\Project\\BankingSystem\\Manage Users\\frmManageUsers.cs [Design]",
+              "RelativeToolTip": "Manage Users\\frmManageUsers.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-02T09:41:39.975Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-19T19:12:50.29Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "frmDepositAndWithDraw.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\shadi\\Desktop\\BankingSystem\\Project\\BankingSystem\\Transactions\\Deposit\u0026\u0026WithDraw  Screens\\frmDepositAndWithDraw.cs",
-              "RelativeDocumentMoniker": "Transactions\\Deposit\u0026\u0026WithDraw  Screens\\frmDepositAndWithDraw.cs",
-              "ToolTip": "C:\\Users\\shadi\\Desktop\\BankingSystem\\Project\\BankingSystem\\Transactions\\Deposit\u0026\u0026WithDraw  Screens\\frmDepositAndWithDraw.cs [Design]",
-              "RelativeToolTip": "Transactions\\Deposit\u0026\u0026WithDraw  Screens\\frmDepositAndWithDraw.cs [Design]",
+              "DocumentIndex": 0,
+              "Title": "frmClientAccountsList.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\shadi\\Desktop\\BankingSystem\\Project\\BankingSystem\\Manage Clients Accounts\\frmClientAccountsList.cs",
+              "RelativeDocumentMoniker": "Manage Clients Accounts\\frmClientAccountsList.cs",
+              "ToolTip": "C:\\Users\\shadi\\Desktop\\BankingSystem\\Project\\BankingSystem\\Manage Clients Accounts\\frmClientAccountsList.cs [Design]",
+              "RelativeToolTip": "Manage Clients Accounts\\frmClientAccountsList.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-02T09:41:36.469Z",
+              "WhenOpened": "2025-10-19T18:54:34.231Z",
               "EditorCaption": " [Design]"
             }
           ]

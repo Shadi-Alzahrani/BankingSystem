@@ -21,3 +21,15 @@ C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSyst
 C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.Transactions.Deposit_Screen.frmDepositAndWithDraw.resources
 C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.Transactions.Transfare.Control.ctrlSelectAccountToTranfare.resources
 C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.Transactions.Transfare.frmTransfare.resources
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.Reports.frmReports.resources
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\bin\Debug\itextsharp.dll
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\bin\Debug\BouncyCastle.Cryptography.xml
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\bin\Debug\itextsharp.xml
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.Client_Mangment.Edit_info.frmEditInfo.resources
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.Log_In_Screen.frmLogIn.resources
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.Client_Mangment.Change_Password_Screen.frmChangePassword.resources
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.DashBoard_Screen.Admin_Dashboard.frmAdminDashboard.resources
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.Manage_Users.frmManageUsers.resources
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.Manage_Clients_Accounts.frmClientAccountsList.resources
+C:\Users\shadi\Desktop\BankingSystem\Project\BankingSystem\obj\Debug\BankingSystem.Manage_Clients_Accounts.frmCloseClientAccount.resources

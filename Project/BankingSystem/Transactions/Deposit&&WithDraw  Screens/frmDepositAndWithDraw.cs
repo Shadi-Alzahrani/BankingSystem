@@ -75,6 +75,15 @@ namespace BankingSystem.Transactions.Deposit_Screen
             string Note = rtsNote.Text;
             ClsClientAccount Acc = await ClsClientAccount.FindClientAccount(clsGlobal.GlobalClient.ClientID, ctrlSelectAccounts1.CurrentAccountID);
 
+
+            if(Acc.AccountStatusID!=1)
+            {
+                MessageBox.Show("the Selected Account Must be Active", "Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+
             if (this.TransType==enTransactionType.Deposit)
             {
 

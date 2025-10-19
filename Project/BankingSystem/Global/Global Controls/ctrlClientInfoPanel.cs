@@ -23,7 +23,7 @@ namespace BankingSystem.Global.Global_Controls
 
         }
 
-        public async void LoadData(int ClientID)
+        public async Task LoadData(int ClientID)
         {
             ClsClient Client = await ClsClient.findClient(ClientID);
 
